@@ -1,5 +1,5 @@
 body{
-    background-image:url('/static/imgs/colorbg.jpg');
+    background-image:url('/static/imgs/colorbg.png');
     padding:5px;
     border:5px solid black;
     width:100%;
@@ -12,8 +12,23 @@ h1{
     color:white;
 }
 
-#mainDisplay{
+.custom-hero{
     padding:2px;
     border:2px solid gray;
     background:rgba(0, 0, 0, 0.4);
+    position:relative;
+}
+
+#birdhat{
+}
+
+#formDiv{
+}
+
+#query{
+    width:75%;
+}
+
+#compose{
+    color:rgba(100, 100, 100, 0.8);
 }

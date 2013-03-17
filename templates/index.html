@@ -16,15 +16,28 @@
         {% block content %}
         <form name="form" method="POST" action="/compose">
             <div class="container">
+                <div id="mainDisplay" align="center" class="span12 custom-hero">
+                    <div class="row">
+                        <div id="bird" class="span6">
+                            <img src="/static/imgs/birdhat.png" id="birdhat"></img>
+                        </div>
 
-                <div id="mainDisplay" align="center">
-                    <h1>Vireo</h1>
-                    <input type="text" id="query" name="query"></input>
-                    <br>
-                    <button type="submit" class="btn">Compose</button>
+                        <div id="formDiv" class="span6" align="left">
+                            <h1>Vireo</h1>
+                            <input type="text" id="query" name="query"></input>
+                            <br>
+                            <button type="submit" class="btn" id="compose">Compose</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tweetDisplay" class="custom-hero">
+                    <h1>Tweet: { tweet }</h1>
                 </div>
 
             </div>
+
+            <input type="hidden" value="{ tweet  }" id="tweet">
 
         </form>
         <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>

@@ -11,14 +11,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def main_page():
-	return render_template('index.html')
+	return render_template('index.html', tweet="")
 
 @app.route('/compose', methods=['POST', 'GET'])
 def compose():
     #I will call Kenny's function here, and send in a string containing a tweet
     query = request.form["query"]
-    tweets = functions.searchTweets(query)
-    return render_template('index.html')
+    tweet = functions.searchTweets(query)
+    return render_template('index.html', tweet=tweet)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
