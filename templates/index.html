@@ -14,9 +14,16 @@
 
     <body>
         {% block content %}
-        <form name="form" method="POST" action="/prank">
+        <form name="form" method="POST" action="/compose">
             <div class="container">
-                <h1 id="banner" id="logo">Vireo</h1>
+
+                <div id="mainDisplay" align="center">
+                    <h1>Vireo</h1>
+                    <input type="text" id="songTitle"></input>
+                    <br>
+                    <button type="submit" class="btn">Compose</button>
+                </div>
+
             </div>
 
         </form>

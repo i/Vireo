@@ -10,6 +10,12 @@ app = Flask(__name__)
 def main_page():
 	return render_template('index.html')
 
+@app.route('/compose')
+def compose():
+    #I will call Kenny's function here, and send in a string containing a tweet
+    return render_template('index.html')
+
+
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
 	app.run(host='0.0.0.0', port=port, debug="true")
