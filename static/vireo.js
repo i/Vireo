@@ -1,24 +1,35 @@
-
-function createFile(notes) {
-//    var fs = require('fs');
-//    var Midi = require('jsmidgen');
-
-    var file = new Midi.File();
-    var track = new Midi.newTrack();
-    file.addTrack(track);
-    for (i in notes){
-        var data = i.split(' ');
-        track.addNote(0, data[0].trim(), data[1].trim());
+function loadRemote(path, callback) {
+  var fetch = new XMLHttpRequest();
+  fetch.open('GET', path);
+  fetch.overrideMimeType("text/plain; charset=x-user-defined");
+  fetch.onreadystatechange = function() {
+    if(this.readyState == 4 && this.status == 200) {
+      /* munge response into a binary string */
+      var t = this.responseText || "" ;
+      var ff = [];
+      var mx = t.length;
+      var scc= String.fromCharCode;
+      for (var z = 0; z < mx; z++) {
+        ff[z] = scc(t.charCodeAt(z) & 255);
+      }
+      callback(ff.join(""));
     }
-
-    var midifile = file.toBytes();
-
-    fs.writeFileSync('test.mid', file.toBytes(), 'binary');
-};
-
-
-function playFile(melodyList) {
-  createFile(melodyList);
-
-  play('midi/test.mid');
+  }
+  fetch.send();
 }
+
+function play(file) {
+  loadRemote(file, function(data) {
+    midiFile = MidiFile(data);
+    synth = Synth(44100);
+    replayer = Replayer(midiFile, synth);
+    audio = AudioPlayer(replayer);
+  })
+}
+
+function playFile() {
+  play('/static/test.mid')
+}
+
+
+playFile();
