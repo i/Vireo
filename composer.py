@@ -11,7 +11,7 @@ scales = ['13568AC1', '134689B1']
 def melodize(tweet, mood):
     if tweet is None:
         return -1
-    scale = tones[mood]  # scales[ord(tweet[0]) % 2]
+    scale = scales[mood]  # scales[ord(tweet[0]) % 2]
     offset = ord(tweet[0]) % 12
     melody = []
 
