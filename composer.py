@@ -1,11 +1,11 @@
+from midiutil.MidiFile import MIDIFile
 
+tones = {'1': 69, '2': 70, '3': 71, '4': 72, '5': 73, '6': 74,
+         '7': 75, '8': 76, '9': 77, 'A': 78, 'B': 79, 'C': 80,
+         'D': 81, 'E': 82, 'F': 83, 'G': 84, 'H': 85, 'I': 86,
+         'J': 87, 'K': 88, 'L': 89, 'M': 90, 'N': 91, 'O': 92}
 
-tones = {'1': 'a4', '2': 'a#4', '3': 'b4', '4': 'c4', '5': 'c#4', '6': 'd4',
-         '7': 'd#4', '8': 'e4', '9': 'f4', 'A': 'f#4', 'B': 'g4', 'C': 'g#4',
-         'D': 'a5', 'E': 'a#5', 'F': 'b', 'G': 'c', 'H': 'c#5', 'I': 'd5',
-         'J': 'd#5', 'K': 'e5', 'L': 'f5', 'M': 'f#5', 'N': 'g5', 'O': 'g#5'}
-
-scales = ['13568AC1', '134689B1']
+scales = ['13568AC1', '134689B1', '1358A135', '134678B1']
 
 
 def melodize(tweet, mood):
@@ -19,7 +19,7 @@ def melodize(tweet, mood):
         scaletone = ord(tweet[i]) % 8
         tone = makeTone(scale, scaletone, offset)
         length = ord(tweet[i]) % 4
-        melody.append(tones[chr(tone)] + ' ' + str(2**(length + 6)))
+        melody.append(str(tones[chr(tone)]) + ' ' + str(length + 1))
 
     return melody
 
@@ -33,3 +33,30 @@ def makeTone(scale, st, offset):
     if n + offset > 9:
         return n + offset - 10 + ord('A')
     return n + offset + ord('0')
+
+
+def midFile(melody):
+    MyMIDI = MIDIFile(1)
+
+    track = 0
+    time = 0
+
+    MyMIDI.addTrackName(track, time, "Vireo")
+    MyMIDI.addTempo(track, time, 300)
+
+    track = 0
+    channel = 0
+    time = 0
+    volume = 100
+
+    for i in melody:
+        data = i.split()
+        MyMIDI.addNote(track, channel, int(data[0].strip()), time,
+                       int(data[1].strip()), volume)
+        time = time + int(data[1].strip())
+
+    binfile = open("/static/test.mid", 'wb')
+    MyMIDI.writeFile(binfile)
+    binfile.close()
+
+    return 0
