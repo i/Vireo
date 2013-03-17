@@ -5,6 +5,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 import functions
+import composer
 import os
 
 app = Flask(__name__)
@@ -18,10 +19,13 @@ def compose():
     query = request.form["query"]
     tweet = functions.searchTweets(query)
     #Scale will default to minor because minor scales are cooler
-    scale = 1
+    mood = 1
     if ":)" in query:
-        scale = 0
-    return render_template('index.html', tweet=tweet)
+        mood = 0
+    #melodyList = composer.melodize(query, mood)
+    #This line of code is just to substitute for the real thing right now
+    melodyList = ["A 5", "B 3", "C 7"]
+    return render_template('index.html', tweet=tweet, melodyList = melodyList)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
