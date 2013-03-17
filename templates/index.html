@@ -24,20 +24,20 @@
 
                         <div id="formDiv" class="span6" align="left">
                             <img src="/static/imgs/logo.png" id="logo"></img>
-                            <input type="text" id="query" name="query"></input>
+                            <input type="text" id="query" name="query" placeholder="Enter a Twitter search query, and I will compose music for you!"></input>
                             <br>
                             <button type="submit" class="btn" id="compose">Compose</button>
                         </div>
                     </div>
                 </div>
-
-                <div id="tweetDisplay" class="custom-hero">
-                    <h1>Tweet: { tweet }</h1>
-                </div>
-
             </div>
-
-            <input type="hidden" value="{ tweet  }" id="tweet">
+            <br>
+            <div class="container">
+                <div id="tweetDisplay" class="custom-hero span12">
+                    <h1>Tweet: {{ tweet }}</h1>
+                </div>
+            </div>
+            <input type="hidden" value="{{ tweet }}" id="tweet">
 
         </form>
         <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>

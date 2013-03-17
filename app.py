@@ -15,9 +15,12 @@ def main_page():
 
 @app.route('/compose', methods=['POST', 'GET'])
 def compose():
-    #I will call Kenny's function here, and send in a string containing a tweet
     query = request.form["query"]
     tweet = functions.searchTweets(query)
+    #Scale will default to minor because minor scales are cooler
+    scale = 1
+    if ":)" in query:
+        scale = 0
     return render_template('index.html', tweet=tweet)
 
 if __name__ == '__main__':
