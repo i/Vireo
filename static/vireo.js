@@ -1,7 +1,7 @@
 
 function createFile(notes) {
-    var fs = require('fs');
-    var Midi = require('jsmidgen');
+//    var fs = require('fs');
+//    var Midi = require('jsmidgen');
 
     var file = new Midi.File();
     var track = new Midi.newTrack();
