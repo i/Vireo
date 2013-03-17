@@ -1,7 +1,10 @@
+import urllib
+import simplejson
 from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
+import functions
 import os
 
 app = Flask(__name__)
@@ -10,11 +13,12 @@ app = Flask(__name__)
 def main_page():
 	return render_template('index.html')
 
-@app.route('/compose')
+@app.route('/compose', methods=['POST', 'GET'])
 def compose():
     #I will call Kenny's function here, and send in a string containing a tweet
+    query = request.form["query"]
+    tweets = functions.searchTweets(query)
     return render_template('index.html')
-
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
