@@ -22,9 +22,9 @@ def compose():
     mood = 1
     if ":)" in query:
         mood = 0
-    #melodyList = composer.melodize(query, mood)
+    melodyList = composer.melodize(query, mood)
     #This line of code is just to substitute for the real thing right now
-    melodyList = ["A 5", "B 3", "C 7"]
+    #melodyList = ["A 5", "B 3", "C 7"]
     return render_template('index.html', tweet=tweet, melodyList = melodyList)
 
 if __name__ == '__main__':

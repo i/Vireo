@@ -1,9 +1,9 @@
 
 
-tones = {'1': 'a', '2': 'a#', '3': 'b', '4': 'c', '5': 'c#', '6': 'd',
-         '7': 'd#', '8': 'e', '9': 'f', 'A': 'f#', 'B': 'g', 'C': 'g#',
-         'D': 'A', 'E': 'A#', 'F': 'B', 'G': 'C', 'H': 'C#', 'I': 'D',
-         'J': 'D#', 'K': 'E', 'L': 'F', 'M': 'F#', 'N': 'G', 'O': 'G#'}
+tones = {'1': 'a4', '2': 'a#4', '3': 'b4', '4': 'c4', '5': 'c#4', '6': 'd4',
+         '7': 'd#4', '8': 'e4', '9': 'f4', 'A': 'f#4', 'B': 'g4', 'C': 'g#4',
+         'D': 'a5', 'E': 'a#5', 'F': 'b', 'G': 'c', 'H': 'c#5', 'I': 'd5',
+         'J': 'd#5', 'K': 'e5', 'L': 'f5', 'M': 'f#5', 'N': 'g5', 'O': 'g#5'}
 
 scales = ['13568AC1', '134689B1']
 
@@ -11,7 +11,7 @@ scales = ['13568AC1', '134689B1']
 def melodize(tweet, mood):
     if tweet is None:
         return -1
-    scale = mood  # scales[ord(tweet[0]) % 2]
+    scale = tones[mood]  # scales[ord(tweet[0]) % 2]
     offset = ord(tweet[0]) % 12
     melody = []
 
@@ -19,7 +19,7 @@ def melodize(tweet, mood):
         scaletone = ord(tweet[i]) % 8
         tone = makeTone(scale, scaletone, offset)
         length = ord(tweet[i]) % 4
-        melody.append(tones[chr(tone)] + ' ' + str(2**length))
+        melody.append(tones[chr(tone)] + ' ' + str(2**(length + 6)))
 
     return melody
 
