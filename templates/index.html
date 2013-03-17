@@ -98,9 +98,10 @@
           <h1>Tweet: {{ tweet }}</h1>
         </div>
       </div>
-      <!--      <input type="hidden" value="{{ tweet }}" id="tweet">
-      <input type="hidden" value="{{ melodyList }}" id="melodyList">-->
 
+      <input type="hidden" value="{{ tweet }}" id="tweet">
+      <input type="hidden" value="{{ melodyList }}" id="melodyList">
+      <audio src="example.midi" preload="auto" autoplay="autoplay"></audio>
 
     </form>
     <button onclick="playFile({{midinotes}})">Play</button>
