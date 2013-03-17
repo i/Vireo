@@ -55,7 +55,7 @@ def midFile(melody):
                        int(data[1].strip()), volume)
         time = time + int(data[1].strip())
 
-    binfile = open("/static/test.mid", 'wb')
+    binfile = open("./static/test.mid", 'wb')
     MyMIDI.writeFile(binfile)
     binfile.close()
 
