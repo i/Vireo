@@ -30,3 +30,8 @@ def compose():
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
 	app.run(host='0.0.0.0', port=port, debug="true")
+
+
+@app.route('/midi/test.mid', methods=['GET'])
+def getmidi():
+    return render_template('midi.html')

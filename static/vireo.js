@@ -1,20 +1,24 @@
-var midiFile = function (notes) {
-  //notes is a String
-  var fs = require('fs');
-  var Midi = require('jsmidgen');
 
-  var file = new Midi.File();
-  var track = new Midi.Track();
-  file.addTrack(percussion);
-  file.addTrack(piano);
+function createFile(notes) {
+    var fs = require('fs');
+    var Midi = require('jsmidgen');
 
+    var file = new Midi.File();
+    var track = new Midi.newTrack();
+    file.addTrack(track);
+    for (i in notes){
+        var data = i.split(' ');
+        track.addNote(0, data[0].trim(), data[1].trim());
+    }
+
+    var midifile = file.toBytes();
+
+    fs.writeFileSync('test.mid', file.toBytes(), 'binary');
 };
 
-function createTrack(notes){
-  //notes is a String[]
-  for (i in notes){
-      console.log(i)
-  }
-}
 
-var testdata = ['A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'G4'];
+function playFile(melodyList) {
+  createFile(melodyList);
+
+  play('midi/test.mid');
+}
