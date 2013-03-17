@@ -1,69 +1,56 @@
 <html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Vireo</title>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Vireo</title>
 
-    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" title="master" charset="utf-8">
-    <link rel="stylesheet" href="/static/css/bootstrap-responsive.css" type="text/css" media="screen" title="master" charset="utf-8">
-    <link rel="stylesheet" href="/static/style.css" type="text/css">
+        <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" title="master" charset="utf-8">
+        <link rel="stylesheet" href="/static/css/bootstrap-responsive.css" type="text/css" media="screen" title="master" charset="utf-8">
+        <link rel="stylesheet" href="/static/style.css" type="text/css">
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/interactivity.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/interactivity.js"></script>
 
-    <script src="/static/jasmid/stream.js"></script>
-    <script src="/static/jasmid/midifile.js"></script>
-    <script src="/static/jasmid/replayer.js"></script>
-    <script src="/static/jasmid/synth.js"></script>
-    <script src="/static/jasmid/audio.js"></script>
-    <script src="/static/vireo.js"></script>
-  </head>
+        <script src="/static/jasmid/stream.js"></script>
+        <script src="/static/jasmid/midifile.js"></script>
+        <script src="/static/jasmid/replayer.js"></script>
+        <script src="/static/jasmid/synth.js"></script>
+        <script src="/static/jasmid/audio.js"></script>
+        <script src="/static/vireo.js"></script>
+    </head>
 
-  <body bgcolor="black">
-    {% block content %}
-    <form name="form" method="POST" action="/compose">
-      <div class="container">
-        <div id="mainDisplay" align="center" class="span12 custom-hero">
-          <div class="row">
-            <div id="bird" class="span6">
-              <img src="/static/imgs/birdhat.png" id="birdhat"></img>
-            </div>
+    <body bgcolor="black">
+        {% block content %}
+        <form name="form" method="POST" action="/compose">
+            <div class="container">
+                <div id="mainDisplay" align="center" class="span12 custom-hero">
+                    <div class="row">
+                        <div id="bird" class="span6">
+                            <img src="/static/imgs/birdhat.png" id="birdhat"></img>
+                        </div>
 
-            <div id="formDiv" class="span6" align="center">
-              <img src="/static/imgs/logo.png" id="logo"></img>
-              <br><br>
-              <input type="text" id="query" name="query" placeholder="Enter a Twitter search query, and I will compose music for you!"></input>
-              <br><br>
-              <button type="submit" class="btn" id="compose">Compose</button>
-            </div>
-            <input type="hidden" value="{{ tweet }}" id="tweet">
-            <input type="hidden" value="{{ melodyList }}" id="melodyList">
-            <br>
-            <embed src="/static/test.mid" autostart="true" loop="false" width="145" height="55" align="center"></embed>
+                        <div id="formDiv" class="span6" align="center">
+                            <img src="/static/imgs/logo.png" id="logo"></img>
+                            <br><br>
+                            <input type="text" id="query" name="query" placeholder="Enter a Twitter search query, and I will compose music for you!"></input>
+                            <br><br>
+                            <button type="submit" class="btn" id="compose">Compose</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div id="tweetDisplay" class="custom-hero span12">
+                        <h1>Tweet: {{ tweet }}</h1>
+                    </div>
+                </div>
+                <input type="hidden" value="{{ tweet }}" id="tweet">
+                <input type="hidden" value="{{ melodyList }}" id="melodyList">
+                <br>
 
-        </form>
-        <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
-        <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-        {% endblock %}
-    </body>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="container">
-        <div id="tweetDisplay" class="custom-hero span12">
-          <h1>Tweet: {{ tweet }}</h1>
-        </div>
-      </div>
-      <input type="hidden" value="{{ tweet }}" id="tweet">
-      <input type="hidden" value="{{ melodyList }}" id="melodyList">
-      <br>
-
-    </form>
-    <button onclick="playFile()">Play</button>
-    <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
-    <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-    {% endblock %}
-  </body>
-</html>
+            </form>
+            <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
+            <script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
+            <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+            {% endblock %}
+        </body>
+    </html>
