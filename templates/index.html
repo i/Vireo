@@ -37,20 +37,21 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="container">
-                    <div id="tweetDisplay" class="custom-hero span12">
-                        <h1>Tweet: {{ tweet }}</h1>
-                    </div>
+            </div>
+            <br>
+            <div class="container">
+                <div id="tweetDisplay" class="custom-hero span12">
+                    <h1>Tweet: {{ tweet }}</h1>
                 </div>
-                <input type="hidden" value="{{ tweet }}" id="tweet">
-                <input type="hidden" value="{{ melodyList }}" id="melodyList">
-                <br>
+            </div>
+            <input type="hidden" value="{{ tweet }}" id="tweet">
+            <input type="hidden" value="{{ melodyList }}" id="melodyList">
+            <br>
 
-            </form>
-            <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
-            <script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
-            <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
-            {% endblock %}
-        </body>
-    </html>
+        </form>
+        <script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
+        <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
