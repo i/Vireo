@@ -1,33 +1,34 @@
-from flask import Flask
-from flask import render_template
-from flask import request
+from flask import Flask, render_template, Response
 import functions
+import composer
 import os
-import test
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def main_page():
-    return render_template('index.html', tweet="")
+    return render_template('index.html')
 
 
-@app.route('/compose', methods=['POST', 'GET'])
-def compose():
-    query = request.form["query"]
-    tweet = functions.searchTweets(query)
+@app.route('/compose/<search>', methods=['POST', 'GET'])
+def compose(search):
+    def generate(tweet, mood):
+        melodyList = composer.melodize(tweet, mood)
+        midi = composer.midFile(melodyList)
+        yield midi
+
+    tweet = functions.searchTweets(search)
+    if tweet is None:
+        return None
     #Scale will default to minor because minor scales are cooler
-    #mood = 1
-    #if ":)" in query:
-    #    mood = 0
-    test.makeMelody()
+    mood = 1
+    if ":)" in search:
+        mood = 0
 
-    #melodyList = composer.melodize(query, mood)
-    #composer.midFile(melodyList)
-    #This line of code is just to substitute for the real thing right now
-    melodyList = ["A 5", "B 3", "C 7"]
-    return render_template('index.html', tweet=tweet, melodyList=melodyList)
+    resp = Response(generate(tweet, mood), mimetype='audio/midi')
+    resp.set_cookie('tweet', tweet)
+    return resp
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

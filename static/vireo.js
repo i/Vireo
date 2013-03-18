@@ -29,11 +29,7 @@ function play(file) {
 }
 
 function playFile() {
-  play('/static/test.mid')
-}
-
-if($("#tweet").val() != ""){
-    setTimeout(playFile(), 300);
+  play('/compose/' + document.getElementById('quere').value);
 }
 
 });
