@@ -11,6 +11,7 @@ scales = ['13568AC1', '134689B1', '1358A135', '134678B1']
 def melodize(tweet, mood):
     if tweet is None:
         return -1
+    tweet = str(tweet)
     scale = scales[mood]  # scales[ord(tweet[0]) % 2]
     offset = ord(tweet[0]) % 12
     melody = []
@@ -42,7 +43,7 @@ def midFile(melody):
     time = 0
 
     MyMIDI.addTrackName(track, time, "Vireo")
-    MyMIDI.addTempo(track, time, 300)
+    MyMIDI.addTempo(track, time, 340)
 
     track = 0
     channel = 0
@@ -55,8 +56,7 @@ def midFile(melody):
                        int(data[1].strip()), volume)
         time = time + int(data[1].strip())
 
-    binfile = open("./static/test.mid", 'wb')
-    MyMIDI.writeFile(binfile)
-    binfile.close()
+    with open("./static/test.mid", "wb") as binfile:
+        MyMIDI.writeFile(binfile)
 
     return 0

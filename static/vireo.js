@@ -1,4 +1,5 @@
-function loadRemote(path, callback) {
+$("document").ready(function(){
+  function loadRemote(path, callback) {
   var fetch = new XMLHttpRequest();
   fetch.open('GET', path);
   fetch.overrideMimeType("text/plain; charset=x-user-defined");
@@ -31,5 +32,8 @@ function playFile() {
   play('/static/test.mid')
 }
 
+if($("#tweet").val() != ""){
+    setTimeout(playFile(), 300);
+}
 
-playFile();
+});

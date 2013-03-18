@@ -2,8 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import functions
-import composer
 import os
+import test
 
 app = Flask(__name__)
 
@@ -18,13 +18,15 @@ def compose():
     query = request.form["query"]
     tweet = functions.searchTweets(query)
     #Scale will default to minor because minor scales are cooler
-    mood = 1
-    if ":)" in query:
-        mood = 0
-    melodyList = composer.melodize(query, mood)
-    composer.midFile(melodyList)
+    #mood = 1
+    #if ":)" in query:
+    #    mood = 0
+    test.makeMelody()
+
+    #melodyList = composer.melodize(query, mood)
+    #composer.midFile(melodyList)
     #This line of code is just to substitute for the real thing right now
-    #melodyList = ["A 5", "B 3", "C 7"]
+    melodyList = ["A 5", "B 3", "C 7"]
     return render_template('index.html', tweet=tweet, melodyList=melodyList)
 
 if __name__ == '__main__':
