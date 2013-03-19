@@ -29,10 +29,13 @@ function play(file) {
 }
 
 function playFile() {
-  play('/static/test.mid')
+  play('/compose/' + document.getElementById('quere').value);
 }
 
+<<<<<<< HEAD
 if( $("#tweet").val() != ""){
   playFile();
 }
+=======
+>>>>>>> 437fdbc019ba9d38e6c0de77f56764f110973982
 });
