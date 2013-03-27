@@ -40,20 +40,22 @@
                 return tweet.substring(6);
             }
 
-            function play(file) {
+            function play(file, cb) {
                 loadRemote(file, function(data) {
                     midiFile = MidiFile(data);
                     synth = Synth(44100);
                     replayer = Replayer(midiFile, synth);
                     audio = AudioPlayer(replayer);
                 })
+                cb();
             }
 
             function playFile() {
-                play('/compose/' + document.getElementById('query').value);
-                var tweetdisplay = document.getElementById('tweetDisplay');
-                tweetdisplay.innerText = getCookie('tweet');
-                <!--I guess we need to use JQuery?-->
+                var cb = function(){
+                    var tweetdisplay = document.getElementById('tweetDisplay');
+                    tweetdisplay.innerText = getCookie('tweet');
+                }
+                play('/compose/' + document.getElementById('query').value, cb);
             }
         </script>
     </head>
