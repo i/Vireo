@@ -46,8 +46,8 @@
                     synth = Synth(44100);
                     replayer = Replayer(midiFile, synth);
                     audio = AudioPlayer(replayer);
+                    cb();
                 })
-                cb();
             }
 
             function playFile() {
