@@ -1,4 +1,4 @@
-from midiutil.MidiFile import MIDIFile
+import MIDIFile
 
 tones = {'1': 69, '2': 70, '3': 71, '4': 72, '5': 73, '6': 74,
          '7': 75, '8': 76, '9': 77, 'A': 78, 'B': 79, 'C': 80,
