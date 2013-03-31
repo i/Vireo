@@ -197,7 +197,7 @@ function MidiFile(data) {
 	
 	stream = Stream(data);
 	var headerChunk = readChunk(stream);
-	if (headerChunk.id != 'MThd' || headerChunk.length != 6) {
+	if (headerChunk.id != 'Midi' || headerChunk.length != 6) {
 		throw "Bad .mid file - header not found";
 	}
 	var headerStream = Stream(headerChunk.data);
