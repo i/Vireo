@@ -10,9 +10,9 @@ def searchTweets(query):
     while ('\n' in x):
         x = random.choice(dict["results"])["text"]
 
-    if query.contains("sagnewshreds"):
+    if "sagnewshreds" in query:
         return "RU Tech Meetup is the shit!  So many awesome hacks!  It is great to see such a good developer community at Rutgers! :)"
-    if query.contains("thekenner33"):
+    if "thekenner33" in query:
         return "HackNY is tomorrow! But I know Sam is going to force me to shotgun beers tonight... :(  #trashathon"
 
     return x
