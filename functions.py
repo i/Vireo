@@ -1,12 +1,26 @@
 import urllib
 import simplejson
 import random
-
+from constants import *
+from TwitterSearch import *
 
 def searchTweets(query):
-    search = urllib.urlopen("http://search.twitter.com/search.json?q=lang%3Aen%20"+query)
-    dict = simplejson.loads(search.read())
-    x = "\n"
-    while ('\n' in x):
-        x = random.choice(dict["results"])["text"]
-    return x
+    try:
+        tso = TwitterSearchOrder()
+        tso.setKeywords([query])
+        tso.setLanguage('en')
+        tso.setCount(1)
+        tso.setIncludeEntities(False)
+
+        ts = TwitterSearch(
+            consumer_key = consumer_key,
+            consumer_secret = consumer_secret,
+            access_token = access_token,
+            access_token_secret = access_token_secret
+         )
+
+        for tweet in ts.searchTweetsIterable(tso):
+            return tweet['text']
+
+    except TwitterSearchException as e:
+        return "No results"
