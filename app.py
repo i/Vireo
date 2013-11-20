@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response
-import functions
+import tweet_search
 import composer
 import os
 
@@ -18,7 +18,7 @@ def compose(search):
         midi = composer.midFile(melodyList)
         yield midi
 
-    tweet = functions.searchTweets(search)
+    tweet = tweet_search.searchTweets(search)
     if tweet is None:
         return None
     #Scale will default to minor because minor scales are cooler

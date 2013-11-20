@@ -37,7 +37,7 @@
             }
             function getCookie() {
                 var tweet = document.cookie;
-                return tweet.substring(6);
+                return tweet.substring(tweet.indexOf("tweet") + 6);
             }
 
             function play(file, cb) {
