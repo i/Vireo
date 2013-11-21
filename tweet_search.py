@@ -23,4 +23,4 @@ def searchTweets(query):
             return tweet['text']
 
     except TwitterSearchException as e:
-        return "No results"
+        return 'Error @Vireo no tweets loaded #fail #lame'
