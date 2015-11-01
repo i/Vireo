@@ -6,7 +6,7 @@
 
 /* Basic background colors for responsive break points */
 /* Max-width 480px landscape phone and down */
-@media (max-width: 480px) {
+@media (max-width: 485px) {
 	.container {
 		background: #f1ea81;
 	}
